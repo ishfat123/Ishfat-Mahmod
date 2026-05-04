@@ -120,9 +120,31 @@
   .btn-ghost { background: transparent; color: var(--accent); border: 1px solid var(--border); }
   .btn-ghost:hover { border-color: var(--accent); background: rgba(200,169,110,0.06); }
 
+  .hero-right {
+    display: flex; flex-direction: column; align-items: center; gap: 2rem;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .profile-photo-wrap {
+    position: relative; width: 180px; height: 180px;
+  }
+  .profile-photo-wrap::before {
+    content: '';
+    position: absolute; inset: -4px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    z-index: 0;
+  }
+  .profile-photo {
+    position: relative; z-index: 1;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--bg);
+    display: block;
+  }
   .hero-stats {
     display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
-    animation: fadeUp 0.8s 0.4s ease both;
+    width: 100%;
   }
   .stat-card {
     background: var(--card);
@@ -373,22 +395,27 @@
         <a href="#contact" class="btn btn-ghost">Get In Touch</a>
       </div>
     </div>
-    <div class="hero-stats">
-      <div class="stat-card">
-        <div class="stat-num">3+</div>
-        <div class="stat-label">Years of Experience</div>
+    <div class="hero-right">
+      <div class="profile-photo-wrap">
+        <img class="profile-photo" src="https://drive.google.com/uc?export=view&id=1xlCAjaVMZBNUr_gA5UFa_zcVfuNzru4f" alt="Ishfat Mahmod" />
       </div>
-      <div class="stat-card">
-        <div class="stat-num">2K+</div>
-        <div class="stat-label">Students Impacted</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">🏆</div>
-        <div class="stat-label">Hult Prize Champion 2024</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">10+</div>
-        <div class="stat-label">Roles & Projects</div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Years of Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">2K+</div>
+          <div class="stat-label">Students Impacted</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">🏆</div>
+          <div class="stat-label">Hult Prize Champion 2024</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Roles & Projects</div>
+        </div>
       </div>
     </div>
   </div>
