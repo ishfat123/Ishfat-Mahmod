@@ -350,6 +350,61 @@
   }
   footer span { color: var(--accent); }
 
+  /* PROJECT */
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .project-top { padding: 2.5rem; }
+  .project-badge {
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    background: rgba(126,184,164,0.1);
+    border: 1px solid rgba(126,184,164,0.25);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: var(--accent2);
+    margin-bottom: 1rem;
+    letter-spacing: 0.06em;
+  }
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .project-date { color: var(--muted); font-size: 0.8rem; margin-bottom: 1rem; }
+  .project-desc { color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; font-size: 0.95rem; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+  .project-tag {
+    padding: 0.3rem 0.8rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 0.75rem;
+    color: var(--text);
+  }
+  .project-stats { display: flex; gap: 2.5rem; }
+  .pstat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; color: var(--accent); line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+  .pstat-label { color: var(--muted); font-size: 0.75rem; }
+  .project-gallery {
+    display: grid; grid-template-columns: 2fr 1fr;
+    gap: 4px; height: 380px;
+  }
+  .project-gallery img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    cursor: zoom-in;
+    transition: opacity 0.2s;
+  }
+  .project-gallery img:hover { opacity: 0.85; }
+  .gallery-side { display: grid; grid-template-rows: 1fr 1fr; gap: 4px; }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(22px); }
     to { opacity: 1; transform: translateY(0); }
@@ -377,6 +432,7 @@
     <a href="#about">About</a>
     <a href="#experience">Experience</a>
     <a href="#venture">Venture</a>
+    <a href="#projects">Project</a>
     <a href="#achievements">Awards</a>
     <a href="#contact">Contact</a>
   </div>
@@ -543,6 +599,60 @@
       <span class="venture-pill">📊 Financial Management</span>
     </div>
   </div>
+</section>
+
+<section id="projects">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Featured Project</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="project-card">
+    <div class="project-top">
+      <div class="project-badge">🌍 UNDP · Futurenation Project</div>
+      <div class="project-title">Campus Facilitator — Workforce Development Program</div>
+      <div class="project-date">📅 February 2025 – July 2025 · Chittagong, Bangladesh</div>
+      <div class="project-desc">Led an impactful nationwide workforce development initiative under UNDP's Futurenation Project, coordinating career readiness and upskilling programs across multiple colleges in Bangladesh. Managed institutional communication, student registration, onboarding processes, and program reporting — directly impacting over 2,000 students' employability journeys.</div>
+      <div class="project-tags">
+        <span class="project-tag">Program Coordination</span>
+        <span class="project-tag">Student Engagement</span>
+        <span class="project-tag">UNDP</span>
+        <span class="project-tag">Career Development</span>
+        <span class="project-tag">Institutional Communication</span>
+        <span class="project-tag">Data Tracking</span>
+      </div>
+      <div class="project-stats">
+        <div class="pstat">
+          <div class="pstat-num">2,000+</div>
+          <div class="pstat-label">Students Reached</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-num">Multi</div>
+          <div class="pstat-label">Colleges Covered</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-num">6 mo</div>
+          <div class="pstat-label">Program Duration</div>
+        </div>
+      </div>
+    </div>
+    <div class="project-gallery">
+      <div class="gallery-main">
+        <img src="https://i.imgur.com/3DSZszS.jpeg" alt="UNDP Futurenation Scholarship Ceremony" onclick="openImg(this.src)" />
+      </div>
+      <div class="gallery-side">
+        <img src="https://i.imgur.com/UWI5UqV.jpeg" alt="UNDP Session" onclick="openImg(this.src)" />
+        <img src="https://i.imgur.com/kYuZ5Ad.jpeg" alt="UNDP Large Audience" onclick="openImg(this.src)" />
+      </div>
+    </div>
+  </div>
+  <div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;">
+    <img id="lightbox-img" src="" style="max-width:90vw;max-height:90vh;border-radius:6px;" />
+  </div>
+  <script>
+    function openImg(src){ var lb=document.getElementById('lightbox'); lb.style.display='flex'; document.getElementById('lightbox-img').src=src; }
+    function closeLightbox(){ document.getElementById('lightbox').style.display='none'; }
+  </script>
 </section>
 
 <section id="achievements" style="background:var(--surface);max-width:100%;padding:5rem 0;">
