@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ishfat Mahmod — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #161920;
+    --card: #1c2028;
+    --accent: #c8a96e;
+    --accent2: #7eb8a4;
+    --text: #e8e2d9;
+    --muted: #8a8880;
+    --border: rgba(200,169,110,0.18);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(13,15,20,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 6rem 3rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 70% 40%, rgba(200,169,110,0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 20% 70%, rgba(126,184,164,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    align-items: center;
+  }
+  .hero-tag {
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    background: rgba(200,169,110,0.1);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 1.2rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-bio {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-btns { display: flex; gap: 1rem; animation: fadeUp 0.8s 0.3s ease both; }
+  .btn {
+    padding: 0.75rem 1.8rem;
+    border-radius: 3px;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary { background: var(--accent); color: #0d0f14; border: none; font-weight: 500; }
+  .btn-primary:hover { background: #dbbf85; transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--accent); border: 1px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--accent); background: rgba(200,169,110,0.06); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .stat-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .stat-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label { color: var(--muted); font-size: 0.78rem; letter-spacing: 0.06em; }
+
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 3rem;
+  }
+  .section-header {
+    display: flex; align-items: center; gap: 1.2rem;
+    margin-bottom: 3rem;
+  }
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    color: var(--accent);
+    opacity: 0.6;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  .section-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
+
+  .about-grid {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: start;
+  }
+  .about-text p { color: var(--muted); line-height: 1.85; margin-bottom: 1rem; }
+  .skills-cloud { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .skill-tag {
+    padding: 0.35rem 0.85rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 0.78rem;
+    color: var(--text);
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+  }
+  .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+  .timeline { position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item {
+    position: relative; margin-bottom: 3rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-dot {
+    position: absolute; left: -1.5rem;
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    top: 0.45rem;
+    box-shadow: 0 0 10px rgba(200,169,110,0.5);
+  }
+  .timeline-org {
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent2); margin-bottom: 0.25rem;
+  }
+  .timeline-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700;
+    margin-bottom: 0.15rem;
+  }
+  .timeline-date {
+    font-size: 0.75rem; color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+  .timeline-desc {
+    color: var(--muted); font-size: 0.88rem;
+    line-height: 1.75;
+  }
+
+  .achieve-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .achieve-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .achieve-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .achieve-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .achieve-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; margin-bottom: 0.5rem;
+  }
+  .achieve-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.7; }
+
+  .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .edu-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.8rem;
+    transition: transform 0.3s, border-color 0.3s;
+    position: relative;
+  }
+  .edu-card:hover { transform: translateY(-3px); border-color: var(--accent2); }
+  .edu-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent2), transparent);
+  }
+  .edu-degree { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.5rem; }
+  .edu-school { font-family: 'Playfair Display', serif; font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .edu-year { color: var(--muted); font-size: 0.78rem; margin-bottom: 0.5rem; }
+  .edu-gpa { font-size: 0.85rem; color: var(--accent); font-weight: 500; }
+
+  .venture-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .venture-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+  .venture-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(200,169,110,0.12);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .venture-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .venture-desc { color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; }
+  .venture-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .venture-pill {
+    padding: 0.3rem 0.8rem;
+    background: rgba(126,184,164,0.1);
+    border: 1px solid rgba(126,184,164,0.25);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: var(--accent2);
+  }
+
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .contact-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.5rem 2rem;
+    display: flex; align-items: center; gap: 1rem;
+    transition: border-color 0.2s, transform 0.2s;
+    text-decoration: none;
+  }
+  .contact-item:hover { border-color: var(--accent); transform: translateX(4px); }
+  .contact-icon { font-size: 1.4rem; }
+  .contact-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
+  .contact-val { color: var(--text); font-size: 0.92rem; }
+
+  footer {
+    text-align: center;
+    padding: 2.5rem 3rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+  }
+  footer span { color: var(--accent); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .hero { padding: 5rem 1.5rem 3rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .achieve-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Ishfat Mahmod</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#venture">Venture</a>
+    <a href="#achievements">Awards</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-tag">HR & Operations Professional · Entrepreneur</div>
+      <h1>Hi, I'm<br><span>Ishfat</span><br>Mahmod.</h1>
+      <p class="hero-bio">
+        A proactive BBA graduate specializing in Human Resource Management with hands-on experience across HR operations, business development, and entrepreneurship — backed by real-world impact at UNDP, GaoTek Inc., and Akij Resource.
+      </p>
+      <div class="hero-btns">
+        <a href="#experience" class="btn btn-primary">View My Journey</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2K+</div>
+        <div class="stat-label">Students Impacted</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">🏆</div>
+        <div class="stat-label">Hult Prize Champion 2024</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Roles & Projects</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">About Me</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a detail-oriented HR and Operations professional from Chittagong, Bangladesh. Currently completing my BBA in Human Resource Management at BGC Trust University Bangladesh (CGPA: 3.34/4.00), I bring a rare blend of academic foundation and practical field experience.</p>
+      <p>From managing HR operations at an international remote company to facilitating UNDP programs for 2,000+ students, I've consistently taken on responsibilities beyond my role — always delivering measurable impact.</p>
+      <p>Alongside my professional journey, I founded <strong style="color:var(--accent)">তাঁবু লাগবে (Taabu Lagbe?)</strong> — a tourism venture running eco-campsites across Bangladesh, which I built from the ground up.</p>
+    </div>
+    <div>
+      <p style="font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">Core Skills</p>
+      <div class="skills-cloud">
+        <span class="skill-tag">HR Operations</span>
+        <span class="skill-tag">Recruitment & Onboarding</span>
+        <span class="skill-tag">Employee Lifecycle Mgmt</span>
+        <span class="skill-tag">KPI Tracking</span>
+        <span class="skill-tag">MS Excel & Google Sheets</span>
+        <span class="skill-tag">Payroll Data Support</span>
+        <span class="skill-tag">Business Development</span>
+        <span class="skill-tag">Digital Marketing</span>
+        <span class="skill-tag">Event Management</span>
+        <span class="skill-tag">Stakeholder Coordination</span>
+        <span class="skill-tag">Adobe Photoshop</span>
+        <span class="skill-tag">Product Management</span>
+        <span class="skill-tag">Public Speaking</span>
+        <span class="skill-tag">AI & GenAI Tools</span>
+        <span class="skill-tag">English & Bengali</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" style="background:var(--surface);max-width:100%;padding:5rem 0;">
+  <div style="max-width:1100px;margin:0 auto;padding:0 3rem;">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-org">Akij Resource, Dhaka</div>
+        <div class="timeline-role">NextGen Intern — Administration & Human Capital</div>
+        <div class="timeline-date">Oct 2025 – Jan 2026</div>
+        <div class="timeline-desc">Supported day-to-day HR operations including employee documentation, attendance tracking, and record maintenance. Assisted in onboarding and maintained structured data using Excel for reporting. Coordinated internal meetings and vendor activities.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-org">GaoTek Inc. (Remote, International)</div>
+        <div class="timeline-role">HR Assistant & Business Development Associate</div>
+        <div class="timeline-date">Dec 2024 – Aug 2025</div>
+        <div class="timeline-desc">Managed end-to-end recruitment, candidate sourcing, and onboarding. Maintained employee data, performance tracking sheets, and KPI reports using Excel/Google Sheets. Strengthened structured workforce supervision across a remote international setup.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-org">UNDP — Futurenation Project</div>
+        <div class="timeline-role">Campus Facilitator</div>
+        <div class="timeline-date">Feb 2025 – Jul 2025</div>
+        <div class="timeline-desc">Coordinated workforce development programs engaging 2,000+ students across multiple institutions. Managed institutional communication, participant registration, and onboarding tracking.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-org">GaoTek Inc. (Remote)</div>
+        <div class="timeline-role">HR Manager & Business Development Associate</div>
+        <div class="timeline-date">Dec 2024 – Apr 2025</div>
+        <div class="timeline-desc">Recruited and managed intern batches for the BD team. Supervised lead generation, email marketing campaigns, and B2B outreach in tech and construction sectors.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-org">GaoTek Inc. (Virtual)</div>
+        <div class="timeline-role">HR Intern — Platoon Leader</div>
+        <div class="timeline-date">Apr 2024 – Aug 2024</div>
+        <div class="timeline-desc">Led HR operations for the Bangladesh team — recruitment, performance evaluations, conflict resolution, and employee engagement. Developed and implemented HR policies aligned with company standards.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-org">Requin BD (Virtual)</div>
+        <div class="timeline-role">Marketing & PR Intern</div>
+        <div class="timeline-date">Jan 2024 – Apr 2024</div>
+        <div class="timeline-desc">Content creation, online reputation management, data analysis & reporting, and event support.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-org">Dreamers Academy</div>
+        <div class="timeline-role">Customer Support Executive</div>
+        <div class="timeline-date">May 2023 – Sep 2023</div>
+        <div class="timeline-desc">Managed 60+ daily parent interactions. Sustained 80%+ student attendance through structured communication management, class rescheduling, and tech support.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-org">YSSE (Virtual)</div>
+        <div class="timeline-role">Management Trainee → Admin & HR Intern</div>
+        <div class="timeline-date">Nov 2022 – Aug 2023</div>
+        <div class="timeline-desc">Maintained intern records, coordinated assignments, conducted volunteer orientation and training, and conducted monthly performance vivas.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="venture">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Entrepreneurship</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="venture-card">
+    <div class="venture-badge">Founder · Aug 2023 – Present</div>
+    <div class="venture-name">তাঁবু লাগবে? <span style="font-size:1.1rem;color:var(--muted);">— Taabu Lagbe?</span></div>
+    <div class="venture-desc">A homegrown tourism venture offering tent rentals, camping trips, and travel services across Bangladesh. Operates <strong style="color:var(--text)">Bashbaria Beach Campsite</strong> and <strong style="color:var(--text)">Chondro Valley Eco Resort</strong> — delivering eco-friendly, community-focused experiences.</div>
+    <div class="venture-pills">
+      <span class="venture-pill">🏕️ Eco Camping</span>
+      <span class="venture-pill">🏖️ Beach Campsite</span>
+      <span class="venture-pill">🏔️ Eco Resort</span>
+      <span class="venture-pill">🗺️ Travel Planning</span>
+      <span class="venture-pill">💼 Operations Management</span>
+      <span class="venture-pill">📊 Financial Management</span>
+    </div>
+  </div>
+</section>
+
+<section id="achievements" style="background:var(--surface);max-width:100%;padding:5rem 0;">
+  <div style="max-width:1100px;margin:0 auto;padding:0 3rem;">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Achievements & Leadership</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="achieve-grid">
+      <div class="achieve-card">
+        <div class="achieve-icon">🏆</div>
+        <div class="achieve-title">Hult Prize 2024 — On-Campus Champion & Global Quarter Finalist</div>
+        <div class="achieve-desc">Won the on-campus competition and advanced to the global qualifier round, competing against teams worldwide. Recognized for exceptional leadership, teamwork, and innovative problem-solving.</div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-icon">🎓</div>
+        <div class="achieve-title">Campus Director — Hult Prize at BGCTUB</div>
+        <div class="achieve-desc">Led a 26-member committee to execute the first-ever offline Grand Finale in the university's history. Introduced prize funding and industry-led workshops.</div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-icon">📋</div>
+        <div class="achieve-title">General Secretary — Business Students' Society</div>
+        <div class="achieve-desc">Recruited and structured 125+ committee members across five clubs. Implemented governance frameworks and acted as liaison between students and university administration.</div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-icon">🌐</div>
+        <div class="achieve-title">Professional Service Director — Rotaract Club</div>
+        <div class="achieve-desc">Planned and executed professional development and community service initiatives for Rotaract Club of Chittagong Karnaphuli.</div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-icon">📜</div>
+        <div class="achieve-title">Certification: HR — Recruitment & Selection</div>
+        <div class="achieve-desc">Completed The Open University certification (April 2026) covering end-to-end hiring, candidate sourcing, interview techniques, and data-informed decisions.</div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-icon">🚀</div>
+        <div class="achieve-title">Certification: Product Management</div>
+        <div class="achieve-desc">Completed Interactive Cares certification (May 2024) covering product lifecycle, user research, MVP design, and roadmap planning.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Education</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-degree">BBA · Human Resource Management</div>
+      <div class="edu-school">BGC Trust University Bangladesh</div>
+      <div class="edu-year">2022 – 2025 · Chittagong</div>
+      <div class="edu-gpa">CGPA: 3.34 / 4.00</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">HSC · Science</div>
+      <div class="edu-school">Nizampur Govt. College</div>
+      <div class="edu-year">2017 – 2020 · Chittagong</div>
+      <div class="edu-gpa">GPA: 5.00 / 5.00</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">SSC · Science</div>
+      <div class="edu-school">Sitakunda Govt. Model High School</div>
+      <div class="edu-year">2012 – 2017 · Chittagong</div>
+      <div class="edu-gpa">GPA: 5.00 / 5.00</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:var(--surface);max-width:100%;padding:5rem 0;">
+  <div style="max-width:1100px;margin:0 auto;padding:0 3rem;">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="section-line"></div>
+    </div>
+    <p style="color:var(--muted);margin-bottom:2rem;max-width:500px;line-height:1.75;">Open to HR roles, operations opportunities, collaborations, and anything exciting. Let's connect!</p>
+    <div class="contact-grid">
+      <a class="contact-item" href="mailto:ishfat123@gmail.com">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-val">ishfat123@gmail.com</div>
+        </div>
+      </a>
+      <a class="contact-item" href="tel:+8801836833083">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-val">+880 1836-833083</div>
+        </div>
+      </a>
+      <a class="contact-item" href="https://linkedin.com/in/ishfat-mahmod" target="_blank">
+        <div class="contact-icon">💼</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-val">Ishfat Mahmod</div>
+        </div>
+      </a>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-val">Dhaka & Chittagong, Bangladesh</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & built with care · <span>Ishfat Mahmod</span> © 2026</p>
+</footer>
+
+</body>
+</html>
